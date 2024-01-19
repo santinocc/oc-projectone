@@ -12,20 +12,21 @@ import com.oc.projectone.repository.PersonRepository;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-	PersonRepository personRepository;
-	PersonService personService;
-	
 	@Autowired
-	public PersonServiceImpl(PersonRepository personRepository, PersonService personService) {
-		super();
-		this.personRepository = personRepository;
-		this.personService = personService;
-	}
+	PersonRepository personRepository;
+//	PersonService personService;
+	
+//	@Autowired
+//	public PersonServiceImpl(PersonRepository personRepository, PersonService personService) {
+//		super();
+//		this.personRepository = personRepository;
+//		this.personService = personService;
+//	}
 	
 	public List<String> getCommunityEmail(String city) {
 		
 		List<String> emails = new ArrayList<>();
-		List<Person> persons = personRepository;
+		List<Person> persons = personRepository.getPersons();
 		
 		for (Person person : persons) {
 			if (person.city.equals(city)) {
@@ -33,6 +34,7 @@ public class PersonServiceImpl implements PersonService {
 			}
 		}
 		
+		System.out.println(emails);
 		return emails;
 	}
 }

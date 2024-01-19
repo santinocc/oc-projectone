@@ -1,15 +1,11 @@
 package com.oc.projectone.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.oc.projectone.service.PersonServiceImpl;
 
 
@@ -22,15 +18,8 @@ public class PersonController {
 	PersonServiceImpl personServiceImpl;
 	
 	@GetMapping("/communityEmail")
-	public ModelAndView getCommunityEmail() {
+	public List<String> getCommunityEmail() {
 		logger.info("HTTP GET request received at /communityEmail URL");
-		
-		String viewName = "communityEmail";
-		
-		Map<String, Object> model = new HashMap<String,Object>();
-		
-		model.put(viewName, personServiceImpl.getCommunityEmail("Culver"));
-		
-		return new ModelAndView(viewName, model);
+		return personServiceImpl.getCommunityEmail("Culver");
 	}
 }
