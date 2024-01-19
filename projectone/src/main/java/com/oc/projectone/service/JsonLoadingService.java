@@ -1,4 +1,4 @@
-package com.oc.projectone.safetynetalerts;
+package com.oc.projectone.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,21 +9,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.jsoniter.JsonIterator;
 import com.jsoniter.any.Any;
 
 import com.oc.projectone.dataminer.model.FireStation;
 import com.oc.projectone.dataminer.model.Person;
 
-public class ExampleLoadingJson {
+@Service
+public class JsonLoadingService {
 
-    public static void main(String[] args) throws IOException {        
+    public void load(String[] args) throws IOException {        
        String filePath = "src/main/resources/data.json";
     	byte[] bytesFile = Files.readAllBytes(new File(filePath).toPath());
         
     	JsonIterator iter = JsonIterator.parse(bytesFile);
     	Any any = iter.readAny();
     	Any personAny = any.get("persons");
+    	
+//Persons Mapping
     	List<Person> persons = new ArrayList<>();
     	personAny.forEach(a -> persons.add(new Person.PersonBuilder().firstName(a.get("firstName").toString())
     			.address(a.get("address").toString())
@@ -34,8 +39,9 @@ public class ExampleLoadingJson {
     			.email(a.get("email").toString())
     			.build()));
     	
-    	persons.forEach(p -> System.out.println(p.firstName.concat(p.lastName).concat(p.address).concat(p.city).concat(p.phone).concat(p.zip)));
-    	
+    	persons.forEach(p -> System.out.println(p.firstName.concat(p.lastName).concat(p.address).concat(p.city).concat(p.phone).concat(p.zip).concat(p.email)));
+   
+//Firestations Mapping
        Map<String, FireStation> fireStationMap = new HashMap<>();
     	Any fireStationAny = any.get("firestations");
     	fireStationAny.forEach(anyStation -> { 
@@ -55,6 +61,7 @@ public class ExampleLoadingJson {
     		}
     	}
     	
+//MedicalRecords Mapping
     	Any medicalAny = any.get("medicalrecords");
     	medicalAny.forEach(medicalRecord -> {System.out.println(medicalRecord.get("firstName").toString().concat(medicalRecord.get("lastName").toString())
     			.concat(medicalRecord.get("birthdate").toString()));
@@ -65,4 +72,5 @@ public class ExampleLoadingJson {
     			allergies.forEach(a -> System.out.println(a.toString()));
     	});
     }
+    
 }
