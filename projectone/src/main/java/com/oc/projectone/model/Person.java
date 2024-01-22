@@ -1,4 +1,4 @@
-package com.oc.projectone.dataminer.model;
+package com.oc.projectone.model;
 
 public class Person {
 	

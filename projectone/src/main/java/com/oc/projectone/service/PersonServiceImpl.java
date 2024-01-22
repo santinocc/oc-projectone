@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.oc.projectone.dataminer.model.Person;
+import com.oc.projectone.model.Person;
 import com.oc.projectone.repository.PersonRepository;
 
 @Service

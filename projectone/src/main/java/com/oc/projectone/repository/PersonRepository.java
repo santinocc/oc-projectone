@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.jsoniter.JsonIterator;
 import com.jsoniter.any.Any;
-import com.oc.projectone.dataminer.model.Person;
+import com.oc.projectone.model.Person;
 
 @Service
 public class PersonRepository {

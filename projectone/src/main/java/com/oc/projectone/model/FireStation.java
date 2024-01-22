@@ -1,4 +1,4 @@
-package com.oc.projectone.dataminer.model;
+package com.oc.projectone.model;
 
 import java.util.HashSet;
 import java.util.Set;
