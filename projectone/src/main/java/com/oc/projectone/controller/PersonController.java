@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oc.projectone.model.PersonInfo;
@@ -20,14 +21,14 @@ public class PersonController {
 	PersonServiceImpl personServiceImpl;
 	
 	@GetMapping("/personInfo")
-	public List<PersonInfo> getPersonInfo() {
+	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, @RequestParam String lastName) {
 		logger.info("HTTP GET request received at /personInfo URL");
-		return personServiceImpl.getPersonInfo("John", "Boyd");
+		return personServiceImpl.getPersonInfo(firstName, lastName);
 	}
 	
 	@GetMapping("/communityEmail")
-	public List<String> getCommunityEmail() {
+	public List<String> getCommunityEmail(@RequestParam String city) {
 		logger.info("HTTP GET request received at /communityEmail URL");
-		return personServiceImpl.getCommunityEmail("Culver");
+		return personServiceImpl.getCommunityEmail(city);
 	}
 }
