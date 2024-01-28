@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oc.projectone.model.Child;
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
 import com.oc.projectone.model.PersonInfo;
@@ -17,7 +18,7 @@ import com.oc.projectone.repository.MedicalRepository;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-
+	
 	@Autowired
 	PersonRepository personRepository;
 	
@@ -31,10 +32,9 @@ public class PersonServiceImpl implements PersonService {
 		List<Person> persons = personRepository.getPersons();
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
 		
-		Medical medical = getMedical(firstName, lastName, medicals);
-		
 		
 		for (Person person : persons) {
+			Medical medical = getMedical(person.firstName, person.lastName, medicals);
 			if ((person.firstName == firstName) && (person.lastName == lastName)) {
 				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medical.birthdate), person.email, medical.medications, medical.allergies);
 				chosenPersons.add(personInfo);
@@ -63,20 +63,61 @@ public class PersonServiceImpl implements PersonService {
 		return emails;
 	}
 	
-	public static int calculateAge(String birthdate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
+	public Integer calculateAge(String birthdate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate dob = LocalDate.parse(birthdate, formatter);
 		LocalDate dateNow = LocalDate.now();
 		
 		return Period.between(dob, dateNow).getYears();
 	}
 	
-	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) {
-		for (Medical medical: medicals) {
+	
+	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) { //TODO: This method is not working as expected
+		for (Medical medical : medicals) {
 			if ((medical.firstName == firstName) && (medical.lastName == lastName)) {
 				return medical;
 			}
 		}
 		return null;
+	}
+	
+	public List<Child> getChildrenList(String address) {
+		
+		List<Child> children = new ArrayList<>();
+		List<Person> persons = personRepository.getPersons();
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		int index = -1;
+		
+		for (Person person : persons) {
+			
+			index++;
+			if (person.address.equals(address)) {
+
+				Integer age = calculateAge(medicals.get(index).birthdate);
+				if (age < 18) {
+					Child child = new Child(medicals.get(index).firstName, medicals.get(index).lastName, calculateAge(medicals.get(index).birthdate));
+					
+					children.add(child);
+				} else {
+					continue;
+				}
+				
+//				for (Medical medical : medicals) {  
+//					Integer age = calculateAge(medical.birthdate);
+//					if (age < 18 &&  && (medicals.get(index).firstName == person.firstName) && (medicals.get(index).lastName == person.lastName) {
+//						Child child = new Child(medical.firstName, medical.lastName, calculateAge(medical.birthdate));
+//						
+//						children.add(child);
+//					} else {
+//						continue;
+//					}
+//				}			
+			}
+		}
+	
+			
+		System.out.println(children);
+		return children;
 	}
 }

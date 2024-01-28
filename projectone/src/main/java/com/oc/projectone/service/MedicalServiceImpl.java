@@ -62,7 +62,7 @@ public class MedicalServiceImpl implements MedicalService {
 //TODO: FIGURE OUT HOW TO USE 'calculateAge' FROM 'PersonServiceImpl' RATHER THAN CREATING ANOTHER SAME METHOD TWICE
 	
 	public static int calculateAge(String birthdate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate dob = LocalDate.parse(birthdate, formatter);
 		LocalDate dateNow = LocalDate.now();
 		

@@ -18,11 +18,11 @@ public class MedicalController {
 	@Autowired
 	MedicalServiceImpl medicalServiceImpl;
 	
-	@GetMapping("/childAlert")
-	public List<Integer> getPatientAges() {
-		logger.info("HTTP GET request received at /childAlert URL");
-		return medicalServiceImpl.getPatientAges();
-	}
+//	@GetMapping("/childAlert")
+//	public List<Integer> getPatientAges() {
+//		logger.info("HTTP GET request received at /childAlert URL");
+//		return medicalServiceImpl.getPatientAges();
+//	}
 	
 
 	

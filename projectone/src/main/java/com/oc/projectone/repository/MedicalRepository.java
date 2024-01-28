@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.jsoniter.JsonIterator;
 import com.jsoniter.any.Any;
 import com.oc.projectone.model.Medical;
-import com.oc.projectone.model.Person;
 
 @Service
 public class MedicalRepository {
@@ -29,28 +28,23 @@ public class MedicalRepository {
         Any any = iter.readAny();
         Any medicalAny = any.get("medicalrecords");
 
+//        System.out.println(medicalAny.get("medications"));
         
         //Medical Records Mapping
         
-        //TODO: Populate an empty 'medical' with information during filtering process
+        //TODO: IF REQUIRED, figure out how to do similar population as below but NO when all parameters are string, instead when 'medications' & 'allergies' are either ArrayList<String>, String[]
         medicals = new ArrayList<>();
+		
     	medicalAny.forEach(medical -> medicals.add(new Medical.MedicalBuilder().firstName(medical.get("firstName").toString())
     			.lastName(medical.get("lastName").toString())
     			.birthdate(medical.get("birthdate").toString())
+
     			
-    			
-    			.medications(medical.get("medications")) //TODO: Figure out how to add/build Array for the 'medications' and 'allergies'
-    			.allergies(medical.get("allergies"))
+    			.medications(medical.get("medications").toString()) //TODO: Figure out how to add/build Array for the 'medications' and 'allergies'
+    			.allergies(medical.get("allergies").toString())
     			.build()));
     	
-//    	{System.out.println(medicalRecord.get("firstName").toString().concat(medicalRecord.get("lastName").toString())
-//    			.concat(medicalRecord.get("birthdate").toString()));
-//    			Any medications = medicalRecord.get("medications");
-//    			medications.forEach(a -> System.out.println(a.toString()));
-//    			
-//    			Any allergies = medicalRecord.get("allergies");
-//    			allergies.forEach(a -> System.out.println(a.toString()));
-//    	});
+    	medicals.forEach(p -> System.out.println((p.firstName + ',' + ' ').concat(p.lastName + ',' + ' ').concat(p.birthdate + ',' + ' ').concat(p.medications + ',' + ' ').concat(p.allergies + ',' + ' ')));
     }
 
     public static List<Medical> getMedicalRecords() {
