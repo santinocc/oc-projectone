@@ -38,6 +38,7 @@ public class PersonServiceImpl implements PersonService {
 		for (Person person : persons) {
 			Medical medical = getMedical(person.firstName, person.lastName, medicals);
 			if ((person.firstName == firstName) && (person.lastName == lastName)) {
+						
 				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medical.birthdate), person.email, medical.medications, medical.allergies);
 				chosenPersons.add(personInfo);
 			} else {

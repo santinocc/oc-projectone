@@ -5,15 +5,15 @@ public class Medical {
 	public final String firstName;
 	public final String lastName;
 	public final String birthdate;
-	public final String medications;
-	public final String allergies;
+	public final String[] medications;
+	public final String[] allergies;
 
 	public static class MedicalBuilder {
 		private String firstName;
 		private String lastName;
 		private String birthdate;
-		private String medications;
-		private String allergies;
+		private String[] medications;
+		private String[] allergies;
 
 		public MedicalBuilder() {
 		}
@@ -33,12 +33,12 @@ public class Medical {
 			return this;
 		}
 
-		public MedicalBuilder medications(String medications) {
+		public MedicalBuilder medications(String[] medications) {
 			this.medications = medications;
 			return this;
 		}
 
-		public MedicalBuilder allergies(String allergies) {
+		public MedicalBuilder allergies(String[] allergies) {
 			this.allergies = allergies;
 			return this;
 		}
@@ -48,7 +48,7 @@ public class Medical {
 		}
 	}
 
-	private Medical(String firstName, String lastName, String birthdate, String medications, String allergies) {
+	private Medical(String firstName, String lastName, String birthdate, String[] medications, String[] allergies) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;

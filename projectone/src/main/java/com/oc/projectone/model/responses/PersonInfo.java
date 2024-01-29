@@ -8,8 +8,8 @@ public class PersonInfo {
 	public final String address;
 	public final Integer age;
 	public final String email;
-	public final String medications;
-	public final String allergies;
+	public final String[] medications;
+	public final String[] allergies;
 	
 	public static class PersonInfoBuilder {
 		private String firstName;
@@ -17,8 +17,8 @@ public class PersonInfo {
 		private String address;
 		private Integer age;
 		private String email;
-		private String medications;
-		private String allergies;
+		private String[] medications;
+		private String[] allergies;
 		
 		public PersonInfoBuilder() {
 		}
@@ -49,13 +49,13 @@ public class PersonInfo {
 		    return this;
 		}
 		
-		public PersonInfoBuilder medications(String medications) {
+		public PersonInfoBuilder medications(String[] medications) {
 			this.medications = medications;
 		    return this;
 		}
 		
 		
-		public PersonInfoBuilder allergies(String allergies) {
+		public PersonInfoBuilder allergies(String[] allergies) {
 			this.allergies = allergies;
 		    return this;
 		}
@@ -65,7 +65,7 @@ public class PersonInfo {
 		}
 	}
 	
-	public PersonInfo(String firstName, String lastName, String address, Integer age, String email, String medications, String allergies) {
+	public PersonInfo(String firstName, String lastName, String address, Integer age, String email, String[] medications, String[] allergies) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
