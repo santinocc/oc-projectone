@@ -1,4 +1,4 @@
-package com.oc.projectone.model;
+package com.oc.projectone.model.persons;
 
 public class Child {
 	

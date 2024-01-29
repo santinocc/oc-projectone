@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oc.projectone.model.Child;
-import com.oc.projectone.model.PersonInfo;
+import com.oc.projectone.model.responses.ChildAlert;
+import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.service.PersonServiceImpl;
 import com.oc.projectone.service.MedicalServiceImpl;
 
@@ -38,8 +38,8 @@ public class PersonController {
 	}
 	
 	@GetMapping("/childAlert")
-	public List<Child> getChildAlert(@RequestParam(required = true) String address) {
+	public ChildAlert getChildAlert(@RequestParam(required = true) String address) {
 		logger.info("HTTP GET request received at /childAlert URL");
-		return personServiceImpl.getChildrenList(address);
+		return personServiceImpl.getChildAlert(address);
 	}  
 }

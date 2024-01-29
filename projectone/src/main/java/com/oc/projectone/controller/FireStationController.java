@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oc.projectone.model.PersonInfo;
+import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.service.FireStationServiceImpl;
 
 
