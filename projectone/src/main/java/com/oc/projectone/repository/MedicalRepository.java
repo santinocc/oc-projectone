@@ -18,11 +18,6 @@ import com.oc.projectone.model.Medical;
 public class MedicalRepository {
 
 	private static List<Medical> medicals; //This is for ALL MedicalRecords
-//	private static Medical medical;
-//	List<String> medicationsList = new ArrayList<String>();
-//	List<String> allergiesList = new ArrayList<String>();
-//	String[] medicationsArray;
-//	String[] allergiesArray;
 
     @PostConstruct
     public void init() throws IOException {

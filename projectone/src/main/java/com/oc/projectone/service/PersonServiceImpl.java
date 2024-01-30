@@ -35,36 +35,23 @@ public class PersonServiceImpl implements PersonService {
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
 		int index = -1;
 		
-		System.out.println(firstName);
-		System.out.println(lastName);
-		
 		for (Person person : persons) {
-			index++;
-			System.out.println(index);
-			System.out.println(person.firstName);
-			System.out.println(person.lastName);
-			System.out.println(person.address);
-			System.out.println(person.email);
-			System.out.println(medicals.get(index).firstName);
-			System.out.println(medicals.get(index).lastName);
-			System.out.println(medicals.get(index).birthdate);
-			System.out.println(medicals.get(index).medications.length);
-			System.out.println(medicals.get(index).allergies.length);
-//			System.out.println(person.firstName.equals(medicals.get(index).firstName)); //WHY IS THIS FALSE?!?
-//			Medical medical = getMedical(person.firstName, person.lastName, medicals);  //TRIAL2
-//			System.out.println(medical.firstName);   //This medical is NULL when I change the conditional to medical.firstName & medical.lastName on next line
+			index++;     //This index approach ONLY works when BOTH persons and medicals Objects are consistent and in order for info of each Individual
+			
+//			Medical medical = getMedical(person.firstName, person.lastName, medicals);  //SOLUTION2
+
 			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) {  //TODO: Check why is not entering the loop if the condition is TRUE
-//				System.out.println("You entered the loop");		
+	
 				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medicals.get(index).birthdate), person.email, medicals.get(index).medications, medicals.get(index).allergies);
 				chosenPersons.add(personInfo);
+				
 			} else {
+				
 				System.out.println("There is no any DATA with that FIRST & LAST NAMES Together");
-//				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medical.birthdate), person.email, medical.medications, medical.allergies);
-//				chosenPersons.add(personInfo);
+				
 			}
 		}
-		
-		System.out.println(chosenPersons);
+
 		return chosenPersons;
 	}
 	
@@ -94,27 +81,27 @@ public class PersonServiceImpl implements PersonService {
 	}
 	
 	
-	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) { //TODO: This method is not working as expected
-		
-		Medical record = null;
-		
-		for (Medical medical : medicals) {
-			if ((medical.firstName == firstName) && (medical.lastName == lastName)) {
-				System.out.println(medical.firstName);
-				System.out.println(medical.lastName);
-				
-				record = new Medical.MedicalBuilder()
-						.firstName(medical.firstName)
-						.lastName(medical.lastName)
-						.birthdate(medical.birthdate)
-						.medications(medical.medications)
-						.allergies(medical.allergies)
-						.build();
+//	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) { //SOLUTION2
+//		
+//		Medical record = null;
+//		
+//		for (Medical medical : medicals) {
+//			if ((medical.firstName == firstName) && (medical.lastName == lastName)) {
+//				System.out.println(medical.firstName);
+//				System.out.println(medical.lastName);
+//				
+//				record = new Medical.MedicalBuilder()
+//						.firstName(medical.firstName)
+//						.lastName(medical.lastName)
+//						.birthdate(medical.birthdate)
+//						.medications(medical.medications)
+//						.allergies(medical.allergies)
+//						.build();
 //				break;
-			}
-		}
-		return record;
-	}
+//			}
+//		}
+//		return record;
+//	}
 	
 	public List<Child> getChildrenList(String address) {
 		

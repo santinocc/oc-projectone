@@ -16,7 +16,7 @@ public interface PersonService {
 	
 	Integer calculateAge(String birthdate);
 	
-	Medical getMedical(String firstName, String lastName, List<Medical> medicals);
+//	Medical getMedical(String firstName, String lastName, List<Medical> medicals);
 	
 	List<Child> getChildrenList(String address);
 	
