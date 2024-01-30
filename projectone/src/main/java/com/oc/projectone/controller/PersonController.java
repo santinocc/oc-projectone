@@ -26,7 +26,7 @@ public class PersonController {
 	MedicalServiceImpl medicalServiceImpl;
 	
 	@GetMapping("/personInfo")
-	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, String lastName) {
+	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, @RequestParam String lastName) {
 		logger.info("HTTP GET request received at /personInfo URL");
 		return personServiceImpl.getPersonInfo(firstName, lastName);
 	}

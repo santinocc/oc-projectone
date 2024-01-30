@@ -36,7 +36,7 @@ public class PersonServiceImpl implements PersonService {
 		
 		
 		for (Person person : persons) {
-			Medical medical = getMedical(person.firstName, person.lastName, medicals);
+			Medical medical = getMedical(person.firstName, person.lastName, medicals); //This medical is null when I change the conditional to medical.firstName & medical.lastName on next line
 			if ((person.firstName == firstName) && (person.lastName == lastName)) {
 						
 				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medical.birthdate), person.email, medical.medications, medical.allergies);
@@ -77,12 +77,16 @@ public class PersonServiceImpl implements PersonService {
 	
 	
 	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) { //TODO: This method is not working as expected
+		
+		Medical record = null;
+		
 		for (Medical medical : medicals) {
 			if ((medical.firstName == firstName) && (medical.lastName == lastName)) {
-				return medical;
+				
+				record = medical;
 			}
 		}
-		return null;
+		return record;
 	}
 	
 	public List<Child> getChildrenList(String address) {
