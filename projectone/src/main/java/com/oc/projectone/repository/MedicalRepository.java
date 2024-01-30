@@ -19,8 +19,8 @@ public class MedicalRepository {
 
 	private static List<Medical> medicals; //This is for ALL MedicalRecords
 //	private static Medical medical;
-	List<String> medicationsList = new ArrayList<String>();
-	List<String> allergiesList = new ArrayList<String>();
+//	List<String> medicationsList = new ArrayList<String>();
+//	List<String> allergiesList = new ArrayList<String>();
 //	String[] medicationsArray;
 //	String[] allergiesArray;
 
@@ -58,6 +58,9 @@ public class MedicalRepository {
 //TRIAL3  
     	medicalAny.forEach(medicalRecord -> {
     	
+    		List<String> medicationsList = new ArrayList<String>();
+    		List<String> allergiesList = new ArrayList<String>();
+    		
 			Any medications = medicalRecord.get("medications");
 			medications.forEach(a -> medicationsList.add(a.toString()));
 			

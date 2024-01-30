@@ -26,13 +26,13 @@ public class PersonController {
 	MedicalServiceImpl medicalServiceImpl;
 	
 	@GetMapping("/personInfo")
-	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, @RequestParam String lastName) {
+	public List<PersonInfo> getPersonInfo(@RequestParam String firstName, @RequestParam String lastName) {  //Do I need @RequestParam(required = true)?
 		logger.info("HTTP GET request received at /personInfo URL");
 		return personServiceImpl.getPersonInfo(firstName, lastName);
 	}
 	
 	@GetMapping("/communityEmail")
-	public List<String> getCommunityEmail(@RequestParam String city) {
+	public List<String> getCommunityEmail(@RequestParam String city) {                                      //Do I need @RequestParam(required = true)?
 		logger.info("HTTP GET request received at /communityEmail URL");
 		return personServiceImpl.getCommunityEmail(city);
 	}

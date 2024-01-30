@@ -22,7 +22,8 @@
         { "firstName":"Shawna", "lastName":"Stelzer", "address":"947 E. Rose Dr", "city":"Culver", "zip":"97451", "phone":"841-874-7784", "email":"ssanw@email.com" },
         { "firstName":"Kendrik", "lastName":"Stelzer", "address":"947 E. Rose Dr", "city":"Culver", "zip":"97451", "phone":"841-874-7784", "email":"bstel@email.com" },
         { "firstName":"Clive", "lastName":"Ferguson", "address":"748 Townings Dr", "city":"Culver", "zip":"97451", "phone":"841-874-6741", "email":"clivfd@ymail.com" },
-        { "firstName":"Eric", "lastName":"Cadigan", "address":"951 LoneTree Rd", "city":"Culver", "zip":"97451", "phone":"841-874-7458", "email":"gramps@email.com" }
+        { "firstName":"Eric", "lastName":"Cadigan", "address":"951 LoneTree Rd", "city":"Culver", "zip":"97451", "phone":"841-874-7458", "email":"gramps@email.com" },
+        { "firstName":"Jacob", "lastName":"Boyd", "address":"420 Peas St", "city":"Culver", "zip":"97451", "phone":"841-874-6513", "email":"kuaki@email.com" }
 	], 
     "firestations": [
 	{ "address":"1509 Culver St", "station":"3" },
@@ -62,6 +63,7 @@
         { "firstName":"Shawna", "lastName":"Stelzer", "birthdate":"07/08/1980", "medications":[], "allergies":[] },
         { "firstName":"Kendrik", "lastName":"Stelzer", "birthdate":"03/06/2014", "medications":["noxidian:100mg", "pharmacol:2500mg"], "allergies":[] },
         { "firstName":"Clive", "lastName":"Ferguson", "birthdate":"03/06/1994", "medications":[], "allergies":[] },
-        { "firstName":"Eric", "lastName":"Cadigan", "birthdate":"08/06/1945", "medications":["tradoxidine:400mg"], "allergies":[] }
+        { "firstName":"Eric", "lastName":"Cadigan", "birthdate":"08/06/1945", "medications":["tradoxidine:400mg"], "allergies":[] },
+        { "firstName":"Jacob", "lastName":"Boyd", "birthdate":"08/26/1991", "medications":["kuak:5000mg", "kuak:10mg", "kuak:250mg"], "allergies":["pollen"] }
         ] 
 }

@@ -1,6 +1,5 @@
 package com.oc.projectone.model;
 
-import com.jsoniter.annotation.JsonProperty;
 
 public class Medical {
 	
