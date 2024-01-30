@@ -1,7 +1,9 @@
 package com.oc.projectone.model;
 
-public class Medical {
+import com.jsoniter.annotation.JsonProperty;
 
+public class Medical {
+	
 	public final String firstName;
 	public final String lastName;
 	public final String birthdate;
@@ -48,7 +50,7 @@ public class Medical {
 		}
 	}
 
-	private Medical(String firstName, String lastName, String birthdate, String[] medications, String[] allergies) {
+	public Medical(String firstName, String lastName, String birthdate, String[] medications, String[] allergies) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;

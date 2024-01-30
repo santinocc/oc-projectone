@@ -61,7 +61,7 @@
 //    		}
 //    	}
 //    	
-////MedicalRecords Mapping
+//MedicalRecords Mapping
 //    	Any medicalAny = any.get("medicalrecords");
 //    	medicalAny.forEach(medicalRecord -> {System.out.println(medicalRecord.get("firstName").toString().concat(medicalRecord.get("lastName").toString())
 //    			.concat(medicalRecord.get("birthdate").toString()));
