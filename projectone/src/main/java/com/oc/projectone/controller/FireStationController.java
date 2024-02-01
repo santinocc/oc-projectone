@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.PersonInfo;
+import com.oc.projectone.model.responses.ServicedPeople;
 import com.oc.projectone.service.FireStationServiceImpl;
 
 
@@ -22,9 +23,15 @@ public class FireStationController {
 	FireStationServiceImpl fireStationServiceImpl;
 	
 	
-	@GetMapping("/fire") //Get StationID for now, later work on return StationID + special FireList with people living in that address
+	@GetMapping("/fire") 
 	public FireInfoResponse getFireInfoResponse(@RequestParam String address) {
 		logger.info("HTTP GET request received at /fire URL");
 		return fireStationServiceImpl.getFireInfoResponse(address);
+	}
+	
+	@GetMapping("/firestation") 
+	public ServicedPeople getServicedPeople(@RequestParam String station) {
+		logger.info("HTTP GET request received at /firestation URL");
+		return fireStationServiceImpl.getServicedPeople(station);
 	}
 }

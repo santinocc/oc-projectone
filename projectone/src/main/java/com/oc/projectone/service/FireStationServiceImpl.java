@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oc.projectone.model.firestations.ServicedPerson;
+import com.oc.projectone.model.persons.Adult;
+import com.oc.projectone.model.persons.Child;
 import com.oc.projectone.model.FireStation;
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
 import com.oc.projectone.model.firestations.FireInfo;
 import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.PersonInfo;
+import com.oc.projectone.model.responses.ServicedPeople;
 import com.oc.projectone.repository.FireStationRepository;
 import com.oc.projectone.repository.MedicalRepository;
 import com.oc.projectone.repository.PersonRepository;
@@ -50,6 +54,44 @@ public class FireStationServiceImpl implements FireStationService {
 	}
 	
 	
+	public ServicedPeople getServicedPeople(String station) {
+		
+		ServicedPeople servicedPeople = null;
+		List<ServicedPerson> servicedPersons = getServicedPersons(station);    //TODO: Make this method work and get adults and children with arraysize of methods from PersonServiceImpl
+//		Integer adults = 
+//		Integer children =
+//		
+//		USE THE METHODS FROM PersonServiceImpl by having the address	
+//		List<Child> getChildrenList(String address);
+//		
+//		List<Adult> getAdultsList(String address);
+		
+		
+		return servicedPeople;
+	}
+	
+	public List<ServicedPerson> getServicedPersons(String station) {
+		
+		List<ServicedPerson> servicedPersons = new ArrayList<>();
+		List<FireStation> fireStations = fireStationRepository.getFireStations();
+		List<Person> persons = personRepository.getPersons();
+		
+		for (FireStation fireStation : fireStations) {
+			
+			System.out.println(fireStation.getStationNumber().contains(station));  //TODO: Get the address that corresponds to the STATION MENTIONED, from each address, return the ServicedPerson Info of each resident.
+			
+//			if(fireStation.getStationNumber().contains(station)) {
+//				
+//				for (Person person : persons) {
+//				
+//					if(person.address.equals(firestation.address))
+//			}
+		}
+		return servicedPersons;
+		}
+	}
+	
+	
 	public List<FireInfo> getFireInfos(String address) {
 		
 		List<FireInfo> residents = new ArrayList<>();
@@ -85,5 +127,5 @@ public class FireStationServiceImpl implements FireStationService {
 		
 		return fireInfoResponse;
 	}
-	
+
 }

@@ -3,8 +3,6 @@ package com.oc.projectone.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +34,7 @@ public class MedicalServiceImpl implements MedicalService {
 			
 			birthdate = medical.birthdate;
 			
-			patientAge = calculateAge(birthdate);
+			patientAge = personServiceImpl.calculateAge(birthdate);
 			patientAges.add(patientAge);
 			
 		}
@@ -46,26 +44,4 @@ public class MedicalServiceImpl implements MedicalService {
 		
 	}
 	
-	
-//	public static int calculateAge(LocalDate dob) {
-//		
-//		LocalDate dateNow = LocalDate.now();
-//		System.out.println("This is" + dateNow);
-//		
-//		if ((dob != null) && (dateNow != null))   {  
-//			return Period.between(dob, dateNow).getYears();  
-//		} else {  
-//		return 0;  
-//		}  
-//	}
-	
-//TODO: FIGURE OUT HOW TO USE 'calculateAge' FROM 'PersonServiceImpl' RATHER THAN CREATING ANOTHER SAME METHOD TWICE
-	
-	public static int calculateAge(String birthdate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-		LocalDate dob = LocalDate.parse(birthdate, formatter);
-		LocalDate dateNow = LocalDate.now();
-		
-		return Period.between(dob, dateNow).getYears();
-	}
 }
