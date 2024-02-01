@@ -42,13 +42,7 @@ public class FireStationRepository {
 
     	fireStations = fireStationMap.values().stream().collect(Collectors.toList());
     	fireStations.forEach(firestation -> System.out.println("Firestation " + firestation.toString()));
-//USE THIS TO FILTER fireStation per ADDRESS... Maybe move it to FireStationServiceImpl    	
-//    	for(FireStation fireStation : fireStations) {
-//    		if(fireStation.getAddresses().contains("489 Manchester St")) {
-//    			System.out.println("Firestation " + fireStation.getStationNumber() + " selected");
-//    			break;
-//    		}
-//    	}
+
     }
 
     public static List<FireStation> getFireStations() {

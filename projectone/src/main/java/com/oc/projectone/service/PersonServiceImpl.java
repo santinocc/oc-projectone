@@ -47,7 +47,7 @@ public class PersonServiceImpl implements PersonService {
 				
 			} else {
 				
-				System.out.println("There is no any DATA with that FIRST & LAST NAMES Together");
+				continue;
 				
 			}
 		}

@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.service.FireStationServiceImpl;
 
@@ -19,15 +21,10 @@ public class FireStationController {
 	@Autowired
 	FireStationServiceImpl fireStationServiceImpl;
 	
-//	@GetMapping("/personInfo")
-//	public List<PersonInfo> getPersonInfo() {
-//		logger.info("HTTP GET request received at /personInfo URL");
-//		return personServiceImpl.getPersonInfo("John", "Boyd");
-//	}
 	
 	@GetMapping("/fire") //Get StationID for now, later work on return StationID + special FireList with people living in that address
-	public String getFireStationNumber(String address) {
+	public FireInfoResponse getFireInfoResponse(@RequestParam String address) {
 		logger.info("HTTP GET request received at /fire URL");
-		return fireStationServiceImpl.getFireStationNumber("1509 Culver St");
+		return fireStationServiceImpl.getFireInfoResponse(address);
 	}
 }
