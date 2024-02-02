@@ -78,17 +78,48 @@ public class FireStationServiceImpl implements FireStationService {
 		
 		for (FireStation fireStation : fireStations) {
 			
-			System.out.println(fireStation.getStationNumber().contains(station));  //TODO: Get the address that corresponds to the STATION MENTIONED, from each address, return the ServicedPerson Info of each resident.
+//			System.out.println(fireStation.getStationNumber().contains(station));  //TODO: Get the address that corresponds to the STATION MENTIONED, from each address, return the ServicedPerson Info of each resident.
 			
-//			if(fireStation.getStationNumber().contains(station)) {
-//				
-//				for (Person person : persons) {
-//				
-//					if(person.address.equals(firestation.address))
-//			}
+			if(fireStation.getStationNumber().contains(station)) {
+				
+				for (Person person : persons) {
+				
+					if(fireStation.getAddresses().contains(person.address)) {
+					
+						ServicedPerson servicedPerson = new ServicedPerson(person.firstName, person.lastName, person.address, person.phone);
+						servicedPersons.add(servicedPerson);
+					}
+				}
+			
+			}
 		}
 		return servicedPersons;
+	}
+	
+	public Integer getServicedAdults(String station) {
+		
+		List<FireStation> fireStations = fireStationRepository.getFireStations();
+		List<Person> persons = personRepository.getPersons();
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		int servicedAdults = 0;
+		
+		for (FireStation fireStation : fireStations) {
+			
+			if(fireStation.getStationNumber().contains(station)) {
+				
+				for (Person person : persons) {
+				
+					if(fireStation.getAddresses().contains(person.address)) {
+					
+						Integer age = calculateAge(medicals.get(index).birthdate);
+						if (age >= 18) {
+							servicedAdults++;
+						} 
+					}
+				}	
+			}
 		}
+		return servicedAdults;
 	}
 	
 	
