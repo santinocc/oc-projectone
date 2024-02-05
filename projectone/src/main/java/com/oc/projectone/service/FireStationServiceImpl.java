@@ -7,19 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.firestations.ServicedPerson;
-import com.oc.projectone.model.persons.Adult;
-import com.oc.projectone.model.persons.Child;
 import com.oc.projectone.model.FireStation;
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
 import com.oc.projectone.model.firestations.FireInfo;
 import com.oc.projectone.model.responses.FireInfoResponse;
-import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.model.responses.ServicedPeople;
 import com.oc.projectone.repository.FireStationRepository;
 import com.oc.projectone.repository.MedicalRepository;
 import com.oc.projectone.repository.PersonRepository;
-import com.oc.projectone.service.PersonServiceImpl;
 
 @Service
 public class FireStationServiceImpl implements FireStationService {
@@ -57,44 +53,44 @@ public class FireStationServiceImpl implements FireStationService {
 	public ServicedPeople getServicedPeople(String station) {
 		
 		ServicedPeople servicedPeople = null;
-		List<ServicedPerson> servicedPersons = getServicedPersons(station);    //TODO: Make this method work and get adults and children with arraysize of methods from PersonServiceImpl
-//		Integer adults = 
-//		Integer children =
-//		
-//		USE THE METHODS FROM PersonServiceImpl by having the address	
-//		List<Child> getChildrenList(String address);
-//		
-//		List<Adult> getAdultsList(String address);
-		
-		
-		return servicedPeople;
-	}
-	
-	public List<ServicedPerson> getServicedPersons(String station) {
-		
-		List<ServicedPerson> servicedPersons = new ArrayList<>();
+		List<ServicedPerson> servicedPersons = new ArrayList<>();;    //TODO: Make this method work and get adults and children with arraysize of methods from PersonServiceImpl
+		Integer adults = 0;
+		Integer children = 0;
 		List<FireStation> fireStations = fireStationRepository.getFireStations();
 		List<Person> persons = personRepository.getPersons();
-		
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		int index = -1;
+
 		for (FireStation fireStation : fireStations) {
-			
-//			System.out.println(fireStation.getStationNumber().contains(station));  //TODO: Get the address that corresponds to the STATION MENTIONED, from each address, return the ServicedPerson Info of each resident.
-			
+						
 			if(fireStation.getStationNumber().contains(station)) {
 				
 				for (Person person : persons) {
 				
+					index++;
+					
 					if(fireStation.getAddresses().contains(person.address)) {
 					
 						ServicedPerson servicedPerson = new ServicedPerson(person.firstName, person.lastName, person.address, person.phone);
 						servicedPersons.add(servicedPerson);
+						
+						Integer age = personServiceImpl.calculateAge(medicals.get(index).birthdate);
+						if (age >= 18) {
+							adults++;
+						} else {
+							children++;
+						}
 					}
 				}
 			
 			}
 		}
-		return servicedPersons;
+		
+		servicedPeople = new ServicedPeople(station, servicedPersons, adults, children);
+		
+		return servicedPeople;
 	}
+	
 	
 	public Integer getServicedAdults(String station) {
 		
@@ -102,6 +98,7 @@ public class FireStationServiceImpl implements FireStationService {
 		List<Person> persons = personRepository.getPersons();
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
 		int servicedAdults = 0;
+		int index = -1;
 		
 		for (FireStation fireStation : fireStations) {
 			
@@ -111,7 +108,7 @@ public class FireStationServiceImpl implements FireStationService {
 				
 					if(fireStation.getAddresses().contains(person.address)) {
 					
-						Integer age = calculateAge(medicals.get(index).birthdate);
+						Integer age = personServiceImpl.calculateAge(medicals.get(index).birthdate);
 						if (age >= 18) {
 							servicedAdults++;
 						} 
