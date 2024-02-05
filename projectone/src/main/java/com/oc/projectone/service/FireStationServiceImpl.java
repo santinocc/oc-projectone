@@ -92,31 +92,17 @@ public class FireStationServiceImpl implements FireStationService {
 	}
 	
 	
-	public Integer getServicedAdults(String station) {
+	public List<String> getPhoneAlert(String station) {
 		
-		List<FireStation> fireStations = fireStationRepository.getFireStations();
-		List<Person> persons = personRepository.getPersons();
-		List<Medical> medicals = medicalRepository.getMedicalRecords();
-		int servicedAdults = 0;
-		int index = -1;
+		List<String> phones = new ArrayList<>();
+		List<ServicedPerson> servicedPersons = getServicedPeople(station).servicedPersons;
 		
-		for (FireStation fireStation : fireStations) {
+		
+		for (ServicedPerson servicedPerson : servicedPersons) {
 			
-			if(fireStation.getStationNumber().contains(station)) {
-				
-				for (Person person : persons) {
-				
-					if(fireStation.getAddresses().contains(person.address)) {
-					
-						Integer age = personServiceImpl.calculateAge(medicals.get(index).birthdate);
-						if (age >= 18) {
-							servicedAdults++;
-						} 
-					}
-				}	
-			}
+			phones.add(servicedPerson.phoneNumber);
 		}
-		return servicedAdults;
+		return phones;
 	}
 	
 	
