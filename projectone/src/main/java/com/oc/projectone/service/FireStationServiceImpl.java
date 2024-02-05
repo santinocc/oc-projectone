@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.firestations.ServicedPerson;
 import com.oc.projectone.model.FireStation;
+import com.oc.projectone.model.persons.Household;
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
 import com.oc.projectone.model.firestations.FireInfo;
@@ -53,7 +54,7 @@ public class FireStationServiceImpl implements FireStationService {
 	public ServicedPeople getServicedPeople(String station) {
 		
 		ServicedPeople servicedPeople = null;
-		List<ServicedPerson> servicedPersons = new ArrayList<>();;    //TODO: Make this method work and get adults and children with arraysize of methods from PersonServiceImpl
+		List<ServicedPerson> servicedPersons = new ArrayList<>();;
 		Integer adults = 0;
 		Integer children = 0;
 		List<FireStation> fireStations = fireStationRepository.getFireStations();
@@ -103,6 +104,43 @@ public class FireStationServiceImpl implements FireStationService {
 			phones.add(servicedPerson.phoneNumber);
 		}
 		return phones;
+	}
+	
+	public List<List<Household>> getHouseholdsPerJurisdiction(String station) {
+		
+		List<Household> households = new ArrayList<>();
+		List<ServicedPerson> servicedPersons = getServicedPeople(station).servicedPersons;
+		
+		List<List<Household>> householdsPerJurisdiction = null;
+//		List<ServicedPerson> servicedPersons = new ArrayList<>();
+		List<FireStation> fireStations = fireStationRepository.getFireStations();
+		List<Person> persons = personRepository.getPersons();
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		int index = -1;
+
+		for (FireStation fireStation : fireStations) {
+						
+			if(fireStation.getStationNumber().contains(station)) {
+				
+				for (Person person : persons) {
+				
+					index++;
+					
+					if(fireStation.getAddresses().contains(person.address)) {
+					
+						Household household = new Household(person.firstName, person.lastName, person.phone, personServiceImpl.calculateAge(medicals.get(index).birthdate), medicals.get(index).medications, medicals.get(index).allergies);     
+						households.add(household);
+
+					}
+				}
+			
+			}
+		}
+		
+		householdsPerJurisdiction = new List<List<Household>>(households);
+		
+		return householdsPerJurisdiction;
+		
 	}
 	
 	

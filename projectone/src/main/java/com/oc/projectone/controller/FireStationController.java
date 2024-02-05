@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oc.projectone.model.persons.Household;
 import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.ServicedPeople;
 import com.oc.projectone.service.FireStationServiceImpl;
@@ -39,5 +40,11 @@ public class FireStationController {
 	public ServicedPeople getServicedPeople(@RequestParam String station) {
 		logger.info("HTTP GET request received at /firestation URL");
 		return fireStationServiceImpl.getServicedPeople(station);
+	}
+	
+	@GetMapping("/flood/stations") 
+	public List<List<Household>> getHouseholdsPerJurisdiction(@RequestParam String station) {
+		logger.info("HTTP GET request received at /flood/stations URL");
+		return fireStationServiceImpl.getHouseholdsPerJurisdiction(station);
 	}
 }
