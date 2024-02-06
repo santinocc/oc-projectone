@@ -110,11 +110,9 @@ public class FireStationServiceImpl implements FireStationService {
 	public List<Households> getHouseholdsPerJurisdiction(String station) {
 		
 		List<Household> households = new ArrayList<>();
-		List<ServicedPerson> servicedPersons = getServicedPeople(station).servicedPersons;
 		
 		Households sameFamily = null;
 		List<Households> householdsPerJurisdiction = new ArrayList<>();
-//		List<ServicedPerson> servicedPersons = new ArrayList<>();
 		List<FireStation> fireStations = fireStationRepository.getFireStations();
 		List<Person> persons = personRepository.getPersons();
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
@@ -123,35 +121,26 @@ public class FireStationServiceImpl implements FireStationService {
 		for (FireStation fireStation : fireStations) {
 						
 			if(fireStation.getStationNumber().contains(station)) {
-				
-				Integer addressesCovered = fireStation.getAddresses().size();
-				
+								
 				for (String address : fireStation.getAddresses()) {
 					int index = -1;
 					
 					for (Person person : persons) {
 					
 						index++;
-						
-						
-	//					for (String address : fireStation.getAddresses()) {
 							
 							if(address.contains(person.address)) {
-	//						if(fireStation.getAddresses().contains(person.address)) {
 								
 								Household household = new Household(person.firstName, person.lastName, person.phone, personServiceImpl.calculateAge(medicals.get(index).birthdate), medicals.get(index).medications, medicals.get(index).allergies);     
 								
 								households.add(household);
 							
 							}
-							
+						sameFamily = new Households(households);     // THIS IS THE GROUP OF PEOPLE LIVING IN SAME HOUSEHOLD ADDRESS
 					}
-					sameFamily = new Households(households);
-					householdsPerJurisdiction.add(sameFamily);
 				}
-					
-			}
-			
+				householdsPerJurisdiction.add(sameFamily);		
+			}	
 		}
 		
 		return householdsPerJurisdiction;
