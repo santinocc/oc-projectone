@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oc.projectone.model.firestations.ServicedPerson;
 import com.oc.projectone.model.FireStation;
 import com.oc.projectone.model.persons.Household;
+import com.oc.projectone.model.persons.Households;
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
 import com.oc.projectone.model.firestations.FireInfo;
@@ -106,38 +107,52 @@ public class FireStationServiceImpl implements FireStationService {
 		return phones;
 	}
 	
-	public List<List<Household>> getHouseholdsPerJurisdiction(String station) {
+	public List<Households> getHouseholdsPerJurisdiction(String station) {
 		
 		List<Household> households = new ArrayList<>();
 		List<ServicedPerson> servicedPersons = getServicedPeople(station).servicedPersons;
 		
-		List<List<Household>> householdsPerJurisdiction = null;
+		Households sameFamily = null;
+		List<Households> householdsPerJurisdiction = new ArrayList<>();
 //		List<ServicedPerson> servicedPersons = new ArrayList<>();
 		List<FireStation> fireStations = fireStationRepository.getFireStations();
 		List<Person> persons = personRepository.getPersons();
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
-		int index = -1;
+		
 
 		for (FireStation fireStation : fireStations) {
 						
 			if(fireStation.getStationNumber().contains(station)) {
 				
-				for (Person person : persons) {
+				Integer addressesCovered = fireStation.getAddresses().size();
 				
-					index++;
+				for (String address : fireStation.getAddresses()) {
+					int index = -1;
 					
-					if(fireStation.getAddresses().contains(person.address)) {
+					for (Person person : persons) {
 					
-						Household household = new Household(person.firstName, person.lastName, person.phone, personServiceImpl.calculateAge(medicals.get(index).birthdate), medicals.get(index).medications, medicals.get(index).allergies);     
-						households.add(household);
-
+						index++;
+						
+						
+	//					for (String address : fireStation.getAddresses()) {
+							
+							if(address.contains(person.address)) {
+	//						if(fireStation.getAddresses().contains(person.address)) {
+								
+								Household household = new Household(person.firstName, person.lastName, person.phone, personServiceImpl.calculateAge(medicals.get(index).birthdate), medicals.get(index).medications, medicals.get(index).allergies);     
+								
+								households.add(household);
+							
+							}
+							
 					}
+					sameFamily = new Households(households);
+					householdsPerJurisdiction.add(sameFamily);
 				}
-			
+					
 			}
+			
 		}
-		
-		householdsPerJurisdiction = new List<List<Household>>(households);
 		
 		return householdsPerJurisdiction;
 		
