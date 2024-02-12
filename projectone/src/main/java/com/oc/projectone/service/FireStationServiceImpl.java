@@ -184,4 +184,11 @@ public class FireStationServiceImpl implements FireStationService {
 		return fireInfoResponse;
 	}
 
+
+	public FireStation addFireStation(FireStation firestation) {
+		List<FireStation> firestations = fireStationRepository.getFireStations();
+		firestations.add(firestation);
+		return null;
+	}
+
 }

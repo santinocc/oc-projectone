@@ -81,28 +81,6 @@ public class PersonServiceImpl implements PersonService {
 	}
 	
 	
-//	public Medical getMedical(String firstName, String lastName, List<Medical> medicals) { //SOLUTION2
-//		
-//		Medical record = null;
-//		
-//		for (Medical medical : medicals) {
-//			if ((medical.firstName == firstName) && (medical.lastName == lastName)) {
-//				System.out.println(medical.firstName);
-//				System.out.println(medical.lastName);
-//				
-//				record = new Medical.MedicalBuilder()
-//						.firstName(medical.firstName)
-//						.lastName(medical.lastName)
-//						.birthdate(medical.birthdate)
-//						.medications(medical.medications)
-//						.allergies(medical.allergies)
-//						.build();
-//				break;
-//			}
-//		}
-//		return record;
-//	}
-	
 	public List<Child> getChildrenList(String address) {
 		
 		List<Child> children = new ArrayList<>();
@@ -126,6 +104,7 @@ public class PersonServiceImpl implements PersonService {
 		return children;
 	}
 	
+	
 	public List<Adult> getAdultsList(String address) {
 		
 		List<Adult> adults = new ArrayList<>();
@@ -148,6 +127,7 @@ public class PersonServiceImpl implements PersonService {
 		}
 		return adults;
 	}
+	
 	
 	public ChildAlert getChildAlert(String address) {
 		

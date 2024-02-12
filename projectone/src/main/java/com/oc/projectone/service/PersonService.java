@@ -3,6 +3,7 @@ package com.oc.projectone.service;
 import java.util.List;
 
 import com.oc.projectone.model.Medical;
+import com.oc.projectone.model.Person;
 import com.oc.projectone.model.persons.Adult;
 import com.oc.projectone.model.persons.Child;
 import com.oc.projectone.model.responses.ChildAlert;
@@ -16,12 +17,12 @@ public interface PersonService {
 	
 	Integer calculateAge(String birthdate);
 	
-//	Medical getMedical(String firstName, String lastName, List<Medical> medicals);
-	
 	List<Child> getChildrenList(String address);
 	
 	List<Adult> getAdultsList(String address);
 	
 	ChildAlert getChildAlert(String address);
+	
+	public Person addPerson(Person person);
 
 }

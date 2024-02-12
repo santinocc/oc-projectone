@@ -2,6 +2,7 @@ package com.oc.projectone.service;
 
 import java.util.List;
 
+import com.oc.projectone.model.FireStation;
 import com.oc.projectone.model.firestations.FireInfo;
 import com.oc.projectone.model.responses.FireInfoResponse;
 
@@ -12,5 +13,7 @@ public interface FireStationService {
 	List<FireInfo> getFireInfos(String address);
 	
 	FireInfoResponse getFireInfoResponse(String address);
+	
+	FireStation addFireStation(FireStation firestation);
 
 }

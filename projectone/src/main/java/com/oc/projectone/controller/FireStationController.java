@@ -6,9 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oc.projectone.model.FireStation;
 import com.oc.projectone.model.persons.Households;
 import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.ServicedPeople;
@@ -47,4 +50,11 @@ public class FireStationController {
 		logger.info("HTTP GET request received at /flood/stations URL");
 		return fireStationServiceImpl.getHouseholdsPerJurisdiction(station);
 	}
+	
+	// POST/PUT/DELETE
+	@PostMapping("/firestation")
+	public FireStation addFireStation(@RequestBody FireStation firestation) {
+		logger.info("HTTP POST request received at /firestation URL to create 1 Fire Station");
+		return fireStationServiceImpl.addFireStation(firestation);
+	}	
 }

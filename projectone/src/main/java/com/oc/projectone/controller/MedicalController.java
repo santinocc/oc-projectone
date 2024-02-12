@@ -23,7 +23,7 @@ public class MedicalController {
 	
 
 	// POST/PUT/DELETE
-	@PostMapping("/medical")
+	@PostMapping("/medicalRecord")
 	public Medical addMedical(@RequestBody Medical medical) {
 		logger.info("HTTP POST request received at /medical URL to create 1 Medical Record");
 		return medicalServiceImpl.addMedical(medical);
