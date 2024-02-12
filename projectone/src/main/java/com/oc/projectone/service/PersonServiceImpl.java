@@ -164,4 +164,11 @@ public class PersonServiceImpl implements PersonService {
 		
 		return childAlert;
 	}
+
+
+	public Person addPerson(Person person) {
+		List<Person> persons = personRepository.getPersons();
+		persons.add(person);
+		return null;
+	}
 }

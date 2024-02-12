@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.Medical;
+import com.oc.projectone.model.Person;
 import com.oc.projectone.repository.MedicalRepository;
 
 @Service
@@ -42,6 +43,13 @@ public class MedicalServiceImpl implements MedicalService {
 		System.out.println(patientAges);
 		return patientAges;
 		
+	}
+
+
+	public Medical addMedical(Medical medical) {
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		medicals.add(medical);
+		return null;
 	}
 	
 }
