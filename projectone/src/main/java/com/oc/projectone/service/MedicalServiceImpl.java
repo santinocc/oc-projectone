@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.Person;
+import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.repository.MedicalRepository;
 
 @Service
@@ -49,6 +50,22 @@ public class MedicalServiceImpl implements MedicalService {
 	public Medical addMedical(Medical medical) {
 		List<Medical> medicals = medicalRepository.getMedicalRecords();
 		medicals.add(medical);
+		return null;
+	}
+
+
+	public Medical deleteMedical(String firstName, String lastName) {
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+		
+		for (Medical medical : medicals) {
+
+			if ((medical.firstName.equals(firstName)) && (medical.lastName.equals(lastName))) { 
+	
+				medicals.remove(medical);
+				
+			}
+		}
+
 		return null;
 	}
 	

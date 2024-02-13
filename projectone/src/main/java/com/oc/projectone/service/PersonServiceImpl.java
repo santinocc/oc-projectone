@@ -40,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
 			
 //			Medical medical = getMedical(person.firstName, person.lastName, medicals);  //SOLUTION2
 
-			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) {  //TODO: Check why is not entering the loop if the condition is TRUE
+			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) { 
 	
 				PersonInfo personInfo = new PersonInfo(person.firstName, person.lastName, person.address, calculateAge(medicals.get(index).birthdate), person.email, medicals.get(index).medications, medicals.get(index).allergies);
 				chosenPersons.add(personInfo);
@@ -149,6 +149,23 @@ public class PersonServiceImpl implements PersonService {
 	public Person addPerson(Person person) {
 		List<Person> persons = personRepository.getPersons();
 		persons.add(person);
+		return null;
+	}
+
+
+	public Person deletePerson(String firstName, String lastName) {
+		
+		List<Person> persons = personRepository.getPersons();
+		
+		for (Person person : persons) {     
+
+			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) { 
+	
+				persons.remove(person);
+				
+			}
+		}
+
 		return null;
 	}
 }

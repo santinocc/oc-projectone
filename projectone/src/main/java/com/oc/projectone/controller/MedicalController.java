@@ -5,9 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oc.projectone.model.Medical;
@@ -28,6 +29,12 @@ public class MedicalController {
 		logger.info("HTTP POST request received at /medical URL to create 1 Medical Record");
 		return medicalServiceImpl.addMedical(medical);
 	}	
+	
+	@DeleteMapping("/medicalRecord")
+	public Medical deleteMedical(@RequestParam String firstName, @RequestParam String lastName) {               // I think the Person class is not required
+		logger.info("HTTP DELETE request received at /medicalRecord URL to delete 1 Medical Record from: " + firstName + " " + lastName);
+		return medicalServiceImpl.deleteMedical(firstName, lastName);
+	}
 	
 }
 

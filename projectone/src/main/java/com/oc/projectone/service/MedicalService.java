@@ -9,5 +9,7 @@ public interface MedicalService {
 	List<Integer> getPatientAges();
 	
 	public Medical addMedical(Medical medical);
+	
+	public Medical deleteMedical(String firstName, String lastName);
 
 }
