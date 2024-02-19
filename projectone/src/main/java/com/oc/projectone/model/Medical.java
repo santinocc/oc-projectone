@@ -5,9 +5,9 @@ public class Medical {
 	
 	public final String firstName;
 	public final String lastName;
-	public final String birthdate;
-	public final String[] medications;
-	public final String[] allergies;
+	public String birthdate;
+	public String[] medications;
+	public String[] allergies;
 
 	public static class MedicalBuilder {
 		private String firstName;

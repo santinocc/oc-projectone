@@ -17,5 +17,7 @@ public interface FireStationService {
 	FireStation addFireStation(String address, String station);
 	
 	FireStation deleteFireStation(String address);
+	
+	boolean updateFireStation(String address, String station);
 
 }

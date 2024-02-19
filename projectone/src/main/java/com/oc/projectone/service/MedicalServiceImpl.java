@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.Medical;
+import com.oc.projectone.model.Person;
 import com.oc.projectone.repository.MedicalRepository;
 
 @Service
@@ -64,8 +65,24 @@ public class MedicalServiceImpl implements MedicalService {
 		    }
 		  }
 		return null;
+	}
+	
+	public boolean updateMedical(Medical medicalUpdate) {
+		
+		List<Medical> medicals = medicalRepository.getMedicalRecords();
+        boolean isUpdated = false;
 
-		  // ... rest of the code (repository deletion and return logic)
+        for (Medical medical : medicals) {
+            if (medical.firstName.equals(medicalUpdate.firstName) && medical.lastName.equals(medicalUpdate.lastName)) {
+                medical.birthdate = medicalUpdate.birthdate;
+                medical.medications = medicalUpdate.medications;
+                medical.allergies = medicalUpdate.allergies;
+
+                isUpdated = true;
+                break;
+            }
+        }
+        return isUpdated;
 	}
 	
 }

@@ -226,7 +226,32 @@ public class FireStationServiceImpl implements FireStationService {
 		  }
 		return null;
 
-		  // ... rest of the code (repository deletion and return logic)
+	}
+
+
+	public boolean updateFireStation(String address, String station) {
+	
+		List<FireStation> firestations = fireStationRepository.getFireStations();
+		
+		boolean isUpdated = false;
+		
+		
+		for (FireStation firestation : firestations) {     
+
+			if (firestation.getAddresses().contains(address)) { 
+				
+				firestation.getAddresses().remove(address);         // It is possible this part is not removing the address from OLD Station #
+			} 
+			
+			if (firestation.getStationNumber().equals(station)) { 
+	
+				firestation.addAddress(address);
+				isUpdated = true;
+			} 
+		}
+
+        return isUpdated;
+
 	}
 
 }

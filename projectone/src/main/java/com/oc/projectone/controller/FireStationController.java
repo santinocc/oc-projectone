@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +60,12 @@ public class FireStationController {
 		logger.info("HTTP POST request received at /firestation URL to create/add 1 Fire Station(" + station + "): For Address: " + address);
 		return fireStationServiceImpl.addFireStation(address,station);
 	}	
+	
+	@PutMapping("/firestation")
+	public boolean updateFireStation(@RequestParam String address, @RequestParam String station) {
+		logger.info("HTTP PUT request received at /firestation URL to update 1 Fire Station from address: " + address + "and new Station #" + station);
+		return fireStationServiceImpl.updateFireStation(address,station);
+	}
 	
 	@DeleteMapping("/firestation")
 	public FireStation deleteFireStation(@RequestParam String address) {         

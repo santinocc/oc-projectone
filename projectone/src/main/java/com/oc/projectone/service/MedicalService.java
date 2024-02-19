@@ -11,5 +11,7 @@ public interface MedicalService {
 	public Medical addMedical(Medical medical);
 	
 	public Medical deleteMedical(String firstName, String lastName);
+	
+	public boolean updateMedical(Medical medicalUpdate);
 
 }
