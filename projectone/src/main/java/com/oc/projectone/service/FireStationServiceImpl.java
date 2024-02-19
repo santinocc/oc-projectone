@@ -1,6 +1,7 @@
 package com.oc.projectone.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -185,10 +186,47 @@ public class FireStationServiceImpl implements FireStationService {
 	}
 
 
-	public FireStation addFireStation(FireStation firestation) {
+	//POST//PUT//DELETE
+	public FireStation addFireStation(String address, String station) {
+		
 		List<FireStation> firestations = fireStationRepository.getFireStations();
-		firestations.add(firestation);
+
+		boolean isExisted = false;
+		
+		
+		for (FireStation firestation : firestations) {     
+
+			if (firestation.getStationNumber().equals(station)) { 
+	
+				firestation.addAddress(address);
+				isExisted = true;
+			} 
+		}
+		
+		if (!isExisted) { 
+			FireStation firestation = new FireStation(station);
+			firestation.addAddress(address);
+			firestations.add(firestation);
+		}
+		
+
 		return null;
+		
+	}
+
+	public FireStation deleteFireStation(String address) {
+		  List<FireStation> firestations = fireStationRepository.getFireStations();
+		  Iterator<FireStation> it = firestations.iterator(); // Use an iterator
+
+		  while (it.hasNext()) {
+		    FireStation firestation = it.next();
+		    if (firestation.getAddresses().contains(address)) {
+		      firestation.getAddresses().remove(address); // This should remove the address from the the station Set<String>
+		    }
+		  }
+		return null;
+
+		  // ... rest of the code (repository deletion and return logic)
 	}
 
 }

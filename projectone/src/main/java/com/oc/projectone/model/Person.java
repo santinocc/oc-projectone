@@ -4,11 +4,11 @@ public class Person {
 	
 	public final String firstName;
 	public final String lastName;
-	public final String phone;
-	public final String zip;
-	public final String address;
-	public final String city;
-	public final String email;
+	public String phone;
+	public String zip;
+	public String address;
+	public String city;
+	public String email;
 	
 	public static class PersonBuilder {
 		private String firstName;

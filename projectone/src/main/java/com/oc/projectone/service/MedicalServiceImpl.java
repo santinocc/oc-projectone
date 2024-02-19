@@ -1,15 +1,14 @@
 package com.oc.projectone.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oc.projectone.model.Medical;
-import com.oc.projectone.model.Person;
-import com.oc.projectone.model.responses.PersonInfo;
 import com.oc.projectone.repository.MedicalRepository;
 
 @Service
@@ -55,18 +54,18 @@ public class MedicalServiceImpl implements MedicalService {
 
 
 	public Medical deleteMedical(String firstName, String lastName) {
-		List<Medical> medicals = medicalRepository.getMedicalRecords();
-		
-		for (Medical medical : medicals) {
+		  List<Medical> medicals = medicalRepository.getMedicalRecords();
+		  Iterator<Medical> it = medicals.iterator(); // Use an iterator
 
-			if ((medical.firstName.equals(firstName)) && (medical.lastName.equals(lastName))) { 
-	
-				medicals.remove(medical);
-				
-			}
-		}
-
+		  while (it.hasNext()) {
+		    Medical medical = it.next();
+		    if (medical.firstName.equals(firstName) && medical.lastName.equals(lastName)) {
+		      it.remove(); // Safely remove using the iterator
+		    }
+		  }
 		return null;
+
+		  // ... rest of the code (repository deletion and return logic)
 	}
 	
 }

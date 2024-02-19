@@ -168,4 +168,25 @@ public class PersonServiceImpl implements PersonService {
 
 		return null;
 	}
+
+
+	public boolean updatePerson(Person personUpdate) {
+		
+		List<Person> persons = personRepository.getPersons();
+        boolean isUpdated = false;
+
+        for (Person person : persons) {
+            if (person.firstName.equals(personUpdate.firstName) && person.lastName.equals(personUpdate.lastName)) {
+                person.address = personUpdate.address;
+                person.city = personUpdate.city;
+                person.zip = personUpdate.zip;
+                person.phone = personUpdate.phone;
+                person.email = personUpdate.email;
+
+                isUpdated = true;
+                break;
+            }
+        }
+        return isUpdated;
+	}
 }

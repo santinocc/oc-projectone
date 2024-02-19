@@ -25,5 +25,7 @@ public interface PersonService {
 	public Person addPerson(Person person);
 	
 	public Person deletePerson(String firstName, String lastName);
+	
+	public boolean updatePerson(Person personUpdate);
 
 }

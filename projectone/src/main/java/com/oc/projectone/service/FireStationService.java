@@ -14,6 +14,8 @@ public interface FireStationService {
 	
 	FireInfoResponse getFireInfoResponse(String address);
 	
-	FireStation addFireStation(FireStation firestation);
+	FireStation addFireStation(String address, String station);
+	
+	FireStation deleteFireStation(String address);
 
 }

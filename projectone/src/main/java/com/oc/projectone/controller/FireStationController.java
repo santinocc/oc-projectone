@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oc.projectone.model.FireStation;
+import com.oc.projectone.model.Medical;
 import com.oc.projectone.model.persons.Households;
 import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.ServicedPeople;
@@ -53,8 +55,14 @@ public class FireStationController {
 	
 	// POST/PUT/DELETE
 	@PostMapping("/firestation")
-	public FireStation addFireStation(@RequestBody FireStation firestation) {
-		logger.info("HTTP POST request received at /firestation URL to create 1 Fire Station");
-		return fireStationServiceImpl.addFireStation(firestation);
+	public FireStation addFireStation(@RequestParam String address, @RequestParam String station) {
+		logger.info("HTTP POST request received at /firestation URL to create/add 1 Fire Station(" + station + "): For Address: " + address);
+		return fireStationServiceImpl.addFireStation(address,station);
 	}	
+	
+	@DeleteMapping("/firestation")
+	public FireStation deleteFireStation(@RequestParam String address) {         
+		logger.info("HTTP DELETE request received at /firestation URL to delete 1 Fire Station from address: " + address);
+		return fireStationServiceImpl.deleteFireStation(address);
+	}
 }

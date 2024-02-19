@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +53,12 @@ public class PersonController {
 	public Person addPerson(@RequestBody Person person) {
 		logger.info("HTTP POST request received at /person URL to create 1 Person");
 		return personServiceImpl.addPerson(person);
+	}
+	
+	@PutMapping("/person")
+	public boolean updatePerson(@RequestBody Person person) {
+		logger.info("HTTP PUT request received at /person URL to update 1 Person called: " + person.firstName + ", " + person.lastName);
+		return personServiceImpl.updatePerson(person);
 	}
 	
 	@DeleteMapping("/person")
