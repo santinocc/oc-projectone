@@ -27,8 +27,8 @@ class MedicalServiceImplTest {
 	MedicalServiceImpl medicalServiceImpl;
 	
 	
-	Medical medical1 = new Medical("Luffy", "MonkeyD", "03/06/1991", ["aznal:350mg", "hydrapermazal:100mg"], ["nilluyin"]);
-	Medical medical2 = new Medical("John", "Boyd", "03/06/1991", ["aznal:350mg", "hydrapermazal:100mg"], ["nilluyin"]);
+	Medical medical1 = new Medical("Luffy", "MonkeyD", "03/06/1991", new String[] {"aznal:350mg", "hydrapermazal:100mg"}, new String[] {"nilluyin"});	
+	Medical medical2 = new Medical("John", "Boyd", "03/06/1991", new String[] {"aznal:350mg", "hydrapermazal:100mg"}, new String[] {"nilluyin"});
 	
 	//HTTP METHODS TEST
 	
