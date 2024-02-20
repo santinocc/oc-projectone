@@ -10,15 +10,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oc.projectone.model.firestations.ServicedPerson;
-import com.oc.projectone.model.persons.Households;
 import com.oc.projectone.model.responses.ChildAlert;
-import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.model.responses.PersonInfo;
-import com.oc.projectone.repository.FireStationRepository;
 import com.oc.projectone.service.FireStationServiceImpl;
 import com.oc.projectone.service.MedicalServiceImpl;
 import com.oc.projectone.service.PersonServiceImpl;

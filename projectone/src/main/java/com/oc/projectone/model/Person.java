@@ -62,7 +62,7 @@ public class Person {
 		}
 	}
 	
-	private Person(String firstName, String lastName, String phone, String zip, String address, String city, String email) {
+	public Person(String firstName, String lastName, String phone, String zip, String address, String city, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
