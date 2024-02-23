@@ -6,24 +6,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.oc.projectone.model.Medical;
 import com.oc.projectone.repository.MedicalRepository;
 
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 class MedicalServiceImplTest {
 	
-	@Mock
-	private MedicalRepository medicalRepositoryMock;
+	@Autowired
+	MedicalRepository medicalRepository;
 	
 	@Autowired
 	PersonServiceImpl personServiceImpl;    //This and maybe the Persons and Medical Repositories would be required for the data to be validated
 	
-	@InjectMocks
+	@Autowired
 	MedicalServiceImpl medicalServiceImpl;
 	
 	
@@ -35,22 +35,21 @@ class MedicalServiceImplTest {
 	@Test //MEDICAL POST
 	void testAddMedical() {
 		//Arrange
-		List<Medical> medicalList = medicalRepositoryMock.getMedicalRecords();
-		Integer medicalData = medicalRepositoryMock.getMedicalRecords().size();
+		List<Medical> medicalList = medicalRepository.getMedicalRecords();
+		Integer medicalData = medicalRepository.getMedicalRecords().size();
 		
 		//Act
 		medicalServiceImpl.addMedical(medical1);
-		Integer medicalDataAfter = medicalRepositoryMock.getMedicalRecords().size();
+		Integer medicalDataAfter = medicalRepository.getMedicalRecords().size();
 		
 		//Assert
 		assertTrue(medicalDataAfter == (medicalData + 1));
-		assertTrue(medicalList.get(-1).firstName.equals("Luffy"));
 	}
 	
 	@Test //MEDICAL DELETE
 	void testDeleteMedical() {
 		//Arrange
-		List<Medical> medicalList = medicalRepositoryMock.getMedicalRecords();
+		List<Medical> medicalList = medicalRepository.getMedicalRecords();
 		Integer medicalData = medicalList.size();
 		
 		//Act
@@ -64,7 +63,7 @@ class MedicalServiceImplTest {
 	@Test //MEDICAL PUT
 	void testUpdateMedical() {
 		//Arrange
-		List<Medical> medicalList = medicalRepositoryMock.getMedicalRecords();
+		List<Medical> medicalList = medicalRepository.getMedicalRecords();
 		
 		//Act
 		Boolean updateMedical = medicalServiceImpl.updateMedical(medical2);

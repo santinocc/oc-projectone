@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.oc.projectone.model.responses.ChildAlert;
 import com.oc.projectone.model.responses.PersonInfo;
@@ -17,6 +17,7 @@ import com.oc.projectone.service.FireStationServiceImpl;
 import com.oc.projectone.service.MedicalServiceImpl;
 import com.oc.projectone.service.PersonServiceImpl;
 
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 class PersonControllerTest {
 
@@ -26,7 +27,7 @@ class PersonControllerTest {
 	@Autowired
 	MedicalServiceImpl medicalServiceImpl;    //This and maybe the Persons and Medical Repositories would be required for the data to be validated
 	
-	@InjectMocks
+	@Autowired
 	FireStationServiceImpl fireStationServiceImpl;
 	
 	

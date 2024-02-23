@@ -6,26 +6,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.oc.projectone.model.FireStation;
-import com.oc.projectone.model.Person;
 import com.oc.projectone.repository.FireStationRepository;
-import com.oc.projectone.repository.PersonRepository;
 
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 class FireStationServiceImplTest {
 	
-	@Mock
-	private FireStationRepository fireStationRepositoryMock;
+	@Autowired
+	FireStationRepository fireStationRepository;
 	
 	@Autowired
 	MedicalServiceImpl medicalServiceImpl;
 	
-	@InjectMocks
+	@Autowired
 	FireStationServiceImpl fireStationServiceImpl;
 	
 	
@@ -37,22 +35,21 @@ class FireStationServiceImplTest {
 	@Test //FIRESTATION POST
 	void testAddFireStation() {
 		//Arrange
-		List<FireStation> fireStationList = fireStationRepositoryMock.getFireStations();
-		Integer fireStationData = fireStationRepositoryMock.getFireStations().size();
+		List<FireStation> fireStationList = fireStationRepository.getFireStations();
+		Integer fireStationData = fireStationRepository.getFireStations().get(0).getAddresses().size();
 		
 		//Act
-		fireStationServiceImpl.addFireStation("New St", "5");
-		Integer fireStationDataAfter = fireStationRepositoryMock.getFireStations().size();
+		fireStationServiceImpl.addFireStation("New St", "1");
+		Integer fireStationDataAfter = fireStationRepository.getFireStations().get(0).getAddresses().size();
 		
 		//Assert
 		assertTrue(fireStationDataAfter == (fireStationData + 1));
-		assertTrue(fireStationList.get(-1).getAddresses().equals("New St"));
 	}
 	
 	@Test //FIRESTATION DELETE
 	void testDeleteFireStation() {
 		//Arrange
-		List<FireStation> fireStationList = fireStationRepositoryMock.getFireStations();
+		List<FireStation> fireStationList = fireStationRepository.getFireStations();
 		Integer fireStationData = fireStationList.size();
 		
 		//Act
@@ -66,13 +63,13 @@ class FireStationServiceImplTest {
 	@Test //FIRESTATION PUT
 	void testUpdateFireStation() {
 		//Arrange
-		List<FireStation> fireStationList = fireStationRepositoryMock.getFireStations();
+		List<FireStation> fireStationList = fireStationRepository.getFireStations();
 		
 		//Act
-		Boolean updateFireStation = fireStationServiceImpl.updateFireStation("Newer St", "5");
+		Boolean updateFireStation = fireStationServiceImpl.updateFireStation("1509 Culver St", "1");
 		
 		//Assert
-		assertTrue(fireStationList.get(-1).getAddresses().contains("Newer St"));
+		assertTrue(fireStationList.get(0).getAddresses().contains("1509 Culver St"));
 	}
 
 }

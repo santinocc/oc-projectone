@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.oc.projectone.model.firestations.ServicedPerson;
 import com.oc.projectone.model.persons.Households;
@@ -16,13 +16,14 @@ import com.oc.projectone.model.responses.FireInfoResponse;
 import com.oc.projectone.repository.FireStationRepository;
 import com.oc.projectone.service.FireStationServiceImpl;
 
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 class FireStationControllerTest {
 
 	@Autowired
 	FireStationRepository fireStationRepository;    //This and maybe the Persons and Medical Repositories would be required for the data to be validated
 	
-	@InjectMocks
+	@Autowired
 	FireStationServiceImpl fireStationServiceImpl;
 	
 	@Test //getFireInfoResponse URL 4/7
