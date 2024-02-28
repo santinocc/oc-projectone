@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,14 +158,22 @@ public class PersonServiceImpl implements PersonService {
 		
 		List<Person> persons = personRepository.getPersons();
 		
-		for (Person person : persons) {     
+//		for (Person person : persons) {     
+//
+//			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) { 
+//	
+//				persons.remove(person);
+//				
+//			}
+//		}
+		Iterator<Person> it = persons.iterator(); // Use an iterator
 
-			if ((person.firstName.equals(firstName)) && (person.lastName.equals(lastName))) { 
-	
-				persons.remove(person);
-				
-			}
-		}
+		  while (it.hasNext()) {
+		    Person person = it.next();
+		    if (person.firstName.equals(firstName) && person.lastName.equals(lastName)) {
+		      it.remove(); // Safely remove using the iterator
+		    }
+		  }
 
 		return null;
 	}

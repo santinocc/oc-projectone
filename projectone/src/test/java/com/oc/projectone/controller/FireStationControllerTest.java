@@ -29,13 +29,13 @@ class FireStationControllerTest {
 	@Test //getFireInfoResponse URL 4/7
 	void testGetFireInfoResponse() {
 		//Arrange
-		String address = "1509 Culver St";
+		String address = "29 15th St";
 		
 		//Act
 		FireInfoResponse fireInfoResponse = fireStationServiceImpl.getFireInfoResponse(address);
 		
 		//Assert
-		assertTrue(fireInfoResponse.station.equals("3"));
+		assertTrue(fireInfoResponse.station.equals("2"));
 	}
 	
 	@Test //getPhoneAlert URL 3/7

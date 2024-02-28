@@ -53,8 +53,13 @@ class FireStationServiceImplTest {
 		Integer fireStationData = fireStationList.size();
 		
 		//Act
-		fireStationServiceImpl.addFireStation("New St", "5");
-		fireStationServiceImpl.deleteFireStation("New St");
+		System.out.println(fireStationList);
+		fireStationServiceImpl.deleteFireStation("112 Steppes Pl");
+		System.out.println(fireStationList);
+		fireStationServiceImpl.addFireStation("chuntaro", "5");
+		System.out.println(fireStationList);
+		fireStationServiceImpl.deleteFireStation("chuntaro");
+		System.out.println(fireStationList);
 		
 		//Assert
 		assertTrue(fireStationData == fireStationList.size());

@@ -56,7 +56,7 @@ class PersonServiceImplTest {
 		personServiceImpl.deletePerson("Tenley", "Boyd");
 		
 		//Assert
-		assertTrue(personData == personList.size());
+		assertTrue(personData > personList.size());
 	}
 	
 	@Test //PERSON PUT

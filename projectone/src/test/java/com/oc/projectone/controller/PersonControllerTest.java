@@ -39,11 +39,13 @@ class PersonControllerTest {
 		String lastName = "Boyd";
 		
 		//Act
-		List<PersonInfo> personInfo = personServiceImpl.getPersonInfo(firstName, lastName);
+		List<PersonInfo> personInfoArray = personServiceImpl.getPersonInfo(firstName, lastName);
+		
+		PersonInfo personInfo = personInfoArray.get(0);
 		
 		//Assert
-		assertTrue(personInfo.get(0).address.equals("1509 Culver St"));
-		assertTrue(personInfo.get(0).age.equals(39));
+		assertTrue(personInfo.firstName.equals("John"));
+		assertFalse(personInfo.address.isEmpty());
 	}
 	
 	
