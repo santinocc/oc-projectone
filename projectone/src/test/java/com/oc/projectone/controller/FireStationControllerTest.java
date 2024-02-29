@@ -53,13 +53,13 @@ class FireStationControllerTest {
 	@Test //getServicedPeople URL 1/7
 	void testGetServicedPeople() {
 		//Arrange
-		String station = "4";
+		String station = "2";
 		
 		//Act
 		List<ServicedPerson> servicedPersons = fireStationServiceImpl.getServicedPeople(station).servicedPersons;
 		
 		//Assert
-		assertTrue(servicedPersons.size() == 4);
+		assertTrue(servicedPersons.size() == 5);
 	}
 	
 	@Test //getHouseholdsPerJurisdiction URL 5/7

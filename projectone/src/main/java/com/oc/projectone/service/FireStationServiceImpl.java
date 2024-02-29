@@ -3,6 +3,7 @@ package com.oc.projectone.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -217,15 +218,17 @@ public class FireStationServiceImpl implements FireStationService {
 	public FireStation deleteFireStation(String address) {
 		  List<FireStation> firestations = fireStationRepository.getFireStations();
 		  Iterator<FireStation> it = firestations.iterator(); // Use an iterator
+		  Set<String> updatedAddresses = null;
 
 		  while (it.hasNext()) {
 		    FireStation firestation = it.next();
 		    if (firestation.getAddresses().contains(address)) {
-		      firestation.getAddresses().remove(address); // This should remove the address from the the station Set<String>
+		      updatedAddresses = firestation.getAddresses();
+		      updatedAddresses.remove(address);
+		      firestation.setAddresses(updatedAddresses);
 		    }
 		  }
-		return null;
-
+		  return null;
 	}
 
 

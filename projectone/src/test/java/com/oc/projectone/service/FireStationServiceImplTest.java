@@ -50,7 +50,7 @@ class FireStationServiceImplTest {
 	void testDeleteFireStation() {
 		//Arrange
 		List<FireStation> fireStationList = fireStationRepository.getFireStations();
-		Integer fireStationData = fireStationList.size();
+		Integer fireStation3Data = fireStationList.get(2).getAddresses().size();
 		
 		//Act
 		System.out.println(fireStationList);
@@ -58,11 +58,14 @@ class FireStationServiceImplTest {
 		System.out.println(fireStationList);
 		fireStationServiceImpl.addFireStation("chuntaro", "5");
 		System.out.println(fireStationList);
+		
+		Integer fireStation5Data = fireStationList.get(4).getAddresses().size();
 		fireStationServiceImpl.deleteFireStation("chuntaro");
 		System.out.println(fireStationList);
 		
 		//Assert
-		assertTrue(fireStationData == fireStationList.size());
+		assertTrue(fireStation3Data > fireStationList.get(2).getAddresses().size());
+		assertTrue(fireStation5Data > fireStationList.get(4).getAddresses().size());
 	}
 	
 	@Test //FIRESTATION PUT

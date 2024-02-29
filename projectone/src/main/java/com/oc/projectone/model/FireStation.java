@@ -26,6 +26,10 @@ public class FireStation {
 		return addresses.stream().collect(Collectors.toSet());
 	}
 	
+	public void setAddresses(Set<String> newAddresses) {
+		this.addresses = newAddresses;
+	}
+	
 	@Override
 	public String toString() {
 		return stationNumber.concat(": ") + String.join(", ", addresses);
